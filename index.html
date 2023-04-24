@@ -10,8 +10,28 @@
     <link rel="stylesheet" href="./assets/styles.css" />
     <title>Local Weather Forecast</title>
 </head>
-
 <body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <aside>
+        <h2>Search for a City:</h2>
+        <input type="text" name="city"><br>
+        <input class="subbutton" type="submit" value="Search">
+        <div class="pastsearch"></div>
+    </aside>
+    <section>
+        <div class="maintemp">
+            <h2 class="mainname"></h2>
+            <ul class="maindesc"></ul>
+        </div>
+    </section>
+    <section>
+        <div>
+            <h3>5-Day Forecast:</h3>
+        </div>
+        <div class="futuretemps"></div>
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
