@@ -6,33 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/reset.css" />
     <link rel="stylesheet" href="./assets/styles.css" />
     <title>Local Weather Forecast</title>
 </head>
 <body>
-    <header>
-        <h1>Weather Dashboard</h1>
+    <header class="hero is-medium is-link">
+        <div class="hero-body">
+        <p class="title is-size-1 has-text-right is-capitalized has-text-weight-bold">Weather dashboard</p>
+    </div>
     </header>
-    <aside>
-        <h2>Search for a City:</h2>
-        <input class="cityname" type="text" name="city" placeholder="Philadelphia"><br>
-        <input class="subbutton" type="submit" value="Search">
+    <section class="columns level">
+    <div class="column is-size-1 level-left">
+        <p class="has-text-black has-text-weight-bold">Search for a City:</p>
+        <input class="cityname ml-2" type="text" name="city" placeholder="Philadelphia"><br>
+        <input class="subbutton ml-2" type="submit" value="Check Temp" id="userInput">
         <div class="pastsearch">
             <ul class="searches"></ul>
         </div>
-    </aside>
-    <section>
-        <div class="maintemp">
+    </div>
+    <div class="column level-item is-bordered">
+        <div class="herocontainer">
             <h2 class="mainname"></h2>
             <ul class="maindesc"></ul>
         </div>
-    </section>
-    <section>
-        <div>
-            <h3>5-Day Forecast:</h3>
+    </div>
+</section>
+    <section class="is-medium">
+        <div class="mb-1">
+            <h3 class="title botborder+">5-Day Forecast:</h3>
         </div>
-        <div class="futuretemps"></div>
+        <div class="futurecontainers columns mt-1">
+            <div class="futuretemps column is-one-fifth"></div>
+            <div class="futuretemps column is-one-fifth"></div>
+            <div class="futuretemps column is-one-fifth"></div>
+            <div class="futuretemps column is-one-fifth"></div>
+            <div class="futuretemps column is-one-fifth"></div>
+    </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
