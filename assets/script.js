@@ -1,6 +1,7 @@
 /*Things to add!
 Use local storage to save past searches and add them below search bar (see previous classes for this? Unsure)
 Current searches only show one city? Why?
+current loop has same day as featured weather as first option, how to add one day to 5 day call?
 popluate empty divs w/information on search button press (use for loop for buttons, how to add to the next day in a for loop?) 
     - Note: All elements are appended into one div! How to populate all 4 divs?
 once js is functional style site*/
