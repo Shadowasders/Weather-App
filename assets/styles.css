@@ -1,3 +1,66 @@
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+img {
+    display: block;
+}
+
+.futureimages {
+    margin: auto;
+}
+
+
 .maintemp {
     border: black 1px solid;
+}
+
+.mainname, .prompt {
+    padding-left: 1%;
+}
+
+.featuredesc {
+padding: 1%;
+}
+
+.cityname {
+    padding: 2%;
+}
+
+.subbutton, .clearbutton {
+    width: 100%;
+}
+
+.subbutton, .pastbtn, .clearbutton {
+    border: none;
+    padding: 1%;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    border-radius: 12px;
+}
+
+.subbutton:hover, .pastbtn:hover, .clearbutton:hover {
+    background-color: lightblue;
+    cursor: pointer;
+} 
+
+.pastbtn:first-of-type {
+    border-top: 5px solid gray;
+}
+
+.pastbtn:last-of-type {
+    border-bottom: 5px solid gray;
+}
+
+.futuretemps {
+    text-align: center;
+}
+
+.searches {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20%;
 }

@@ -9,40 +9,44 @@
     <link rel="stylesheet" href="./assets/styles.css" />
     <title>Local Weather Forecast</title>
 </head>
+
 <body>
     <header class="hero is-medium is-link">
-        <div class="hero-body">
-        <p class="title is-size-1 has-text-right is-capitalized has-text-weight-bold">Weather dashboard</p>
-    </div>
+        <div class="hero-body is-inline">
+            <p class="title is-size-1 has-text-right is-capitalized has-text-weight-bold">Weather dashboard</p>
+        </div>
     </header>
-    <section class="columns level">
-    <div class="column is-size-1 level-left">
-        <p class="has-text-black has-text-weight-bold">Search for a City:</p>
-        <input class="cityname ml-2" type="text" name="city" placeholder="Philadelphia"><br>
-        <input class="subbutton ml-2" type="submit" value="Check Temp" id="userInput">
-        <div class="pastsearch">
-            <ul class="searches"></ul>
+    <div class="columns">
+    <section class="columns column is-one-third level is-inline is-flex">
+        <div class="column is-size-1 level-left">
+            <p class="has-text-black has-text-weight-bold prompt">Search for a City:</p>
+            <input class="cityname ml-2" type="text" name="city" placeholder="Philadelphia"><br>
+            <input class="subbutton ml-2 mb-2" type="submit" value="Check Temp" id="userInput">
+            <div class="pastsearch">
+                <ul class="searches ml-2"></ul>
+            </div>
+            <input class="clearbutton ml-2" type="submit" value="Clear Past Searches" />
         </div>
-    </div>
-    <div class="column level-item is-bordered">
-        <div class="herocontainer">
-            <h2 class="mainname"></h2>
-            <ul class="maindesc"></ul>
-        </div>
-    </div>
-</section>
-    <section class="is-medium">
-        <div class="mb-1">
-            <h3 class="title botborder+">5-Day Forecast:</h3>
-        </div>
-        <div class="futurecontainers columns mt-1">
-            <div class="futuretemps column is-one-fifth"></div>
-            <div class="futuretemps column is-one-fifth"></div>
-            <div class="futuretemps column is-one-fifth"></div>
-            <div class="futuretemps column is-one-fifth"></div>
-            <div class="futuretemps column is-one-fifth"></div>
-    </div>
     </section>
+    <section class="columns column">
+        <div class="column level-item is-bordered pb-1">
+            <div class="herocontainer">
+                <h2 class="mainname"></h2>
+                <ul class="maindesc"></ul>
+            </div>
+            <div>
+                <h3 class="title py-2">5-Day Forecast:</h3>
+            </div>
+            <div class="futurecontainers columns mt-1">
+                <div class="futuretemps column is-one-fifth"></div>
+                <div class="futuretemps column is-one-fifth"></div>
+                <div class="futuretemps column is-one-fifth"></div>
+                <div class="futuretemps column is-one-fifth"></div>
+                <div class="futuretemps column is-one-fifth"></div>
+            </div>
+        </div>
+    </section>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
