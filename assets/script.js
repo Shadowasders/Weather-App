@@ -16,7 +16,7 @@ var oneCallKey = "c4bea1998d641c9cfd206ef0165142e5";
 var cityLat = ""
 var cityLon = ""
 var previousCitiesFromLocalStorage = [];
-
+//render previous buttons on page load.
 function init(){
     var favTemp = localStorage.getItem("cityHistory");
     if(favTemp){ 
@@ -27,8 +27,7 @@ function init(){
 
   init();
 
-// $(searchHistoryEl).delegate(".pastbtn", "click", findPastCoord)
-
+//function for rendering buttons
 function renderBtns() {
     searchHistoryEl.innerHTML = "";
     for (i = 0; i < previousCitiesFromLocalStorage.length; i++) {
@@ -38,37 +37,25 @@ function renderBtns() {
         pastCity.dataset.lon = previousCitiesFromLocalStorage[i].lon;
         pastCity.textContent = previousCitiesFromLocalStorage[i].location;
         searchHistoryEl.appendChild(pastCity);
-       
-        // pastCity.addEventListener("click", findPastCoord);
+        pastCity.addEventListener("click", function(event){
+            cityLat = event.target.dataset.lat
+            cityLon = event.target.dataset.lon
+            getOneCallWeather(event.target.textContent);    
+        });
     }
-    // function findPastCoord() {
-    //     var pastCityName = pastCity.textContent
-    //     console.log(pastCity);
-    //     console.log(pastCityName);
-    //     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${pastCityName}&limit=1&appid=${apiKey}`)
-    //     .then(function (response) {
-    //         return response.json();
-    //     })
-    //     .then(function (data) {
-
-    //         if(data.length == 0) {
-    //             alert("Please enter a correct location.");
-    //             return null;
-    //         }
-    //         cityLat = data[0].lat;
-    //         cityLon = data[0].lon;
-    // })
-    // .then(getOneCallWeather);
 };
 
-
+//function for clearing previous searches
 function clearbtns () {
     localStorage.removeItem("cityHistory");
     localStorage.clear();
+    previousCitiesFromLocalStorage = [];
     searchHistoryEl.innerHTML = "";
     cityNameEl.innerHTML = "";
 }
 
+
+//function to take the name of a city, and find the lat and Lon for it, to be inputted in the next call
 function findCoord() {
     var inputVal = cityNameEl.value;
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${inputVal}&limit=1&appid=${apiKey}`)
@@ -83,31 +70,35 @@ function findCoord() {
             }
             cityLat = data[0].lat;
             cityLon = data[0].lon;
+            //creating an object to store for past search buttons
             var cityObj = {
                 location: inputVal,
                 lat: cityLat,
                 lon: cityLon
             }
+            //creating said buttons
             previousCitiesFromLocalStorage.push(cityObj);
             localStorage.setItem("cityHistory", JSON.stringify(previousCitiesFromLocalStorage));
             renderBtns();
         })
         .then(getOneCallWeather);
 }
-
-function getOneCallWeather() {
+//uses the previous lat and Lon values to find the extact weather details 
+function getOneCallWeather(cityName) {
     fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${cityLat}&lon=${cityLon}&appid=${oneCallKey}&units=imperial&exclude=minutely,hourly,alerts`)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data);
-            var showcaseInput = cityNameEl.value;
+            //Since the 3.0 API does not include the city name, uses the name put into the text input
+            var showcaseInput = cityName || cityNameEl.value;
             mainTempEL.classList.add("maintemp")
             cityFeaturedEL.innerHTML = "";
             cityDetails.innerHTML = "";
+            //adding icon
             cityFeaturedEL.innerHTML = showcaseInput + " " + dayjs.unix(data.current.dt).format("MM/DD/YYYY") + "<img src='https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png'/>";
             cityFeaturedEL.classList.add("title", "has-text-weight-bold");
+            //creating and appending the temp, humidity, and wind speed to the showcase weather
             var featureTempEL = document.createElement("li");
             featureTempEL.classList.add("featuredesc", "subtitle");
             featureTempEL.innerHTML = "Temp: " + data.current.temp;
@@ -120,7 +111,9 @@ function getOneCallWeather() {
             featureWind.classList.add("featuredesc", "subtitle");
             featureWind.innerHTML = "Wind: " + data.current.wind_speed + " Mph";
             cityDetails.appendChild(featureWind);
+            //setting a background for the future forecasts
             futureContainerEl.classList.add("has-background-grey-light")
+            //looping through the next five days and setting the highlights from each
             for (let j = 0; j < 5; j++) {
                 futureDetailsNodeList[j].innerHTML = "";
                 var futureDateEL = document.createElement("h2");

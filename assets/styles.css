@@ -2,11 +2,11 @@ body {
     height: 100vh;
     width: 100vw;
 }
-
+/* setting main image to it's own line, as margin auto spaced it weirdly */
 img {
     display: block;
 }
-
+/*setting future images to center*/
 .futureimages {
     margin: auto;
 }
@@ -39,7 +39,7 @@ padding: 1%;
     transition: 0.3s;
     border-radius: 12px;
 }
-
+/*setting buttons to change color on hover*/
 .subbutton:hover, .pastbtn:hover, .clearbutton:hover {
     background-color: lightblue;
     cursor: pointer;
