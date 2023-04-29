@@ -58,7 +58,7 @@ function clearbtns () {
 //function to take the name of a city, and find the lat and Lon for it, to be inputted in the next call
 function findCoord() {
     var inputVal = cityNameEl.value;
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${inputVal}&limit=1&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${inputVal}&limit=1&appid=${apiKey}`)
         .then(function (response) {
             return response.json();
         })
